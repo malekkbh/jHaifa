@@ -63,7 +63,7 @@ const Shatreen = students.filter(student => {
 
 console.log("Shatreen is: ", Shatreen.length , "/" , students.length);
 console.log("shatreen: " , Shatreen);
-console.log("shatreen: " , students);
+console.log("shatreen: " , students)
  
 
 
