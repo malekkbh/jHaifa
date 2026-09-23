@@ -61,11 +61,6 @@ const Shatreen = students.filter(student => {
     return student.avg > 50 
 })
 
-console.log("Shatreen is: ", Shatreen.length , "/" , students.length);
-console.log("shatreen: " , Shatreen);
-console.log("shatreen: " , students)
- 
-
 
 const class_avg = sum / students.length
 
