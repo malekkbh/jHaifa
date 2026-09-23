@@ -1,8 +1,8 @@
+import Provider from "@/store/provider";
 import { ThemeProvider } from "@react-navigation/native";
 import { Stack } from "expo-router";
 import React from "react";
 import { StyleSheet } from "react-native";
-import Provider from "../store/provider";
 
 const _layout = () => {
   return (

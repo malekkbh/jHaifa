@@ -1,44 +1,21 @@
-import { Image, StyleSheet, Text, TextInput, View } from "react-native";
-import React, { useState } from "react";
-import data from "@/constants/data";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import React from "react";
 import Card from "@/components/Card";
-import ProductItem from "@/components/ProductItem";
-import { AntDesign, EvilIcons } from "@expo/vector-icons";
-import { useNavigation } from "expo-router";
+import Whatsapp_Item from "@/components/Whatsapp_Item";
+import Post from "@/components/Post";
 
 const index = () => {
-  const [filterData, setFilterData] = useState(data);
-  const navigation = useNavigation();
-  const renderItems = () => {
-    return filterData.map((item) => {
-      return (
-        <ProductItem name={item.name} price={item.price} image={item.image} />
-      );
-    });
-  };
-
-  const onChangeText = (text: string) => {
-    const filter = data.filter((item) =>
-      item.name.toLocaleLowerCase().includes(text.toLocaleLowerCase())
-    );
-    setFilterData(filter);
-  };
-
+  const shawermaURI = "https://c8.alamy.com/comp/E90K52/chicken-lamb-shawerma-fast-food-meat-E90K52.jpg"
+  const maqlobehURI = "https://images.squarespace-cdn.com/content/v1/64d82b053ba2795879510949/2d8226da-ef07-4c31-9e2e-bda4b72e87bb/Kattan+Cauliflower+Makloubeh.jpg"
   return (
-    <View>
-      <TextInput
-        placeholder="Search"
-        style={styles.input}
-        onChangeText={(text) => onChangeText(text)}
-      />
-      <EvilIcons
-        onPress={() => navigation.navigate("Cart")}
-        name="cart"
-        size={30}
-        color="black"
-        style={styles.cart}
-      />
-      {renderItems()}
+    <View style={styles.continer}>
+      <ScrollView>
+        <Post userName="Shawerma" image={shawermaURI} liks={"1.2M"} />
+        <Post userName="Mqlobeh" image ={maqlobehURI}/>
+        <Post />
+        <Post />
+        <Post />
+      </ScrollView>
     </View>
   );
 };
@@ -46,36 +23,52 @@ const index = () => {
 export default index;
 
 const styles = StyleSheet.create({
-  name: {
-    fontSize: 30,
+  continer: {
+    flex: 1,
+    // justifyContent: "center",
+    // alignItems: "center",
+    backgroundColor: "white",
+  },
+
+  abc: {
+    color: "red",
+  },
+  BD: {
+    fontSize: 20,
+    color: "red",
   },
   card: {
+    width: 400,
+    height: 300,
+    borderWidth: 2,
+  },
+  red: {
+    // backgroundColor:"red",
+    borderWidth: 2,
+    borderColor: "red",
+    width: 400,
+    height: 100,
+    padding: 8,
     flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  blue: {
+    borderColor: "blue",
+    width: 70,
+    height: 70,
+    borderWidth: 4,
+  },
+  green: {
+    borderWidth: 4,
+    borderColor: "green",
+    width: 300,
+    height: 70,
+    justifyContent: "space-evenly",
     alignItems: "center",
-    // backgroundColor:"red" ,
-    marginTop: 5,
-    borderRadius: 15,
-    marginLeft: 10,
-    marginRight: 10,
-    borderWidth: 1,
   },
-  img: {
-    width: 90,
-    height: 90,
-    marginRight: 20,
-    marginLeft: 20,
-  },
-  input: {
-    borderWidth: 1,
-    width: "80%",
-    alignSelf: "center",
-    borderRadius: 10,
-    fontSize: 25,
-    padding: 5,
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  cart: {
-    marginLeft: 40,
+  text: {
+    fontSize: 30,
+    textAlign: "center",
+    top: 80,
   },
 });

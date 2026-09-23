@@ -1,18 +1,75 @@
-const arr = [];
+// console.log("Code Zone")
+// const year = 2016
+// const age = 2026 - year
+// console.log( "age: " ,  age);
 
-// for (var i = 0; i < 10000000; i++) {
-//   arr.push(1);
+// var a = "10"
+// var b = "b"
+// var ab = a+" "+b
+// console.log(ab);
+
+// for(var i = 0 ; i < 100000 ; i ++) {
+//     console.log("Line: " , i);
 // }
 
-// arr.forEach((item) => {
-//   console.log("item: ", item);
-// });
+const students = [
+    {
+        name: "btata" , 
+        class : "10-1", 
+        avg : 34 , 
+        address :"Tayebeh"
+    },
+    {
+        name: "Bandora" , 
+        class : "10-1", 
+        avg : 50 , 
+        address :"Tayebeh"
+    }, {
+        name: "faqos" , 
+        class : "10-1", 
+        avg : 88 , 
+        address :"Der al-Asad"
+    }, {
+        name: "kbab" , 
+        class : "11-1", 
+        avg : 88 , 
+        address :"Tayebeh"
+    }, {
+        name: "Pita" , 
+        class : "12-1", 
+        avg : 12 , 
+        address :"Qalsweh"
+    }, {
+        name: "Burger" , 
+        class : "11-1", 
+        avg : 99 , 
+        address :"Tayebeh"
+    }, {
+        name: "Shawerma" , 
+        class : "10-1", 
+        avg : 100 , 
+        address :"Tayebeh"
+    }, 
+];
+var sum = 0;
 
-// console.log(arr.length);
+students.forEach(student => {
+    sum = sum + student.avg
+})
 
-const sum = (a, b) => {
-  return a + b;
-};
+const Shatreen = students.filter(student => {
+    return student.avg > 50 
+})
 
-console.log(sum(8, 2));
-// sum(4, 7);
+console.log("Shatreen is: ", Shatreen.length , "/" , students.length);
+console.log("shatreen: " , Shatreen);
+console.log("shatreen: " , students);
+ 
+
+
+const class_avg = sum / students.length
+
+console.log("class avg: " ,class_avg.toFixed(2) );
+
+
+console.log("sum: ", sum);

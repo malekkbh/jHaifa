@@ -1,13 +1,20 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Images from "@/assets/images/Images";
 import ContactItem from "@/components/ContactItem";
 import AppHeader from "@/components/Header";
-import { data } from "@/assets/res/data";
 import { Ionicons } from "@expo/vector-icons";
+import { getAllProducts } from "@/constants/api";
 
-const Whatsapp = () => {
+const index = () => {
   const [on, setIsOn] = useState(true);
+  const [data, setData] = useState([]);
+
+  const getAllProdeuctsFromDB = async () => {
+    await getAllProducts().then((res) => {
+      setData(res);
+    });
+  };
 
   const renderContacts = () => {
     const contacts = data.map((contact) => {
@@ -27,19 +34,26 @@ const Whatsapp = () => {
     }
   };
 
+  useEffect(()=>{
+    getAllProdeuctsFromDB()
+  },[])
+
   return (
-    <View style={[styles.container , !on && {backgroundColor:'black'}]}>
+    <View style={[styles.container, !on && { backgroundColor: "black" }]}>
       <AppHeader />
       {renderContacts()}
 
-      <Ionicons name="power-outline" size={100}  
-      onPress={()=> setIsOn(!on) }
-       color={on ? 'black' : 'white'} />
+      <Ionicons
+        name="power-outline"
+        size={100}
+        onPress={() => setIsOn(!on)}
+        color={on ? "black" : "white"}
+      />
     </View>
   );
 };
 
-export default Whatsapp;
+export default index;
 
 const styles = StyleSheet.create({
   container: {

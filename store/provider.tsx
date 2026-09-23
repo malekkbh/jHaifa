@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
-import HaifaContext from "./context";
+import AppContext from "./context";
 
 //rnfes
 
-const provider = (props) => {
+const Provider = (props) => {
   const [cart, setCart] = useState([]);
 
   const value = {
@@ -13,12 +13,12 @@ const provider = (props) => {
   };
 
   return (
-    <HaifaContext.Provider value={value}>
+    <AppContext.Provider value={value}>
       {props.children}
-    </HaifaContext.Provider>
+    </AppContext.Provider>
   );
 };
 
-export default provider;
+export default Provider;
 
 const styles = StyleSheet.create({});

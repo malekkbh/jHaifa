@@ -1,5 +1,5 @@
 import { createContext } from "react";
 
-const HaifaContext = createContext({});
+const AppContext = createContext({});
 
-export default HaifaContext;
+export default AppContext;

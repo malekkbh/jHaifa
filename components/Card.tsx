@@ -1,18 +1,53 @@
-import { Image, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { Alert, Button, Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { TextInput } from "react-native-gesture-handler";
+import { login_api } from "@/constants/api";
+import { useNavigation } from "expo-router";
 
-//rnfes 
+//rnfes
 
 const Card = (props) => {
   const item = props.item || {};
+  const navigation = useNavigation();
+
+  const [name, setName] = useState("");
+  const [pass, setPass] = useState("");
+
+  const navigateHome = () => {
+    navigation.navigate("index");
+  };
+
+  const onLoginPress = () => {
+    const body = {
+      userName: name,
+      pass: pass,
+    };
+
+    login_api(body).then((loginRes) => {
+      if (loginRes.error) {
+        Alert.alert(loginRes.errorMessage);
+        return; // stop
+      }
+
+      if (!loginRes.valid) {
+        Alert.alert("userName or pass is wrong");
+        return;
+      } else {
+        navigateHome();
+      }
+    });
+  };
+
   return (
     <View style={styles.card}>
-      <Image source={item.image} style={styles.img} />
-      <Text style={styles.name}>{item.name}</Text>
-      <Text style={styles.name}>{" - " + item.price + "$"}</Text>
-      {item.d_price < item.price && (
-        <Text style={styles.name}>{" - " + item.d_price + "$"}</Text>
-      )}
+      <TextInput
+        placeholder="Name"
+        value={name}
+        onChangeText={(txt) => setName(txt)}
+      />
+    
+      <Text>{name}</Text>
+      <Button title="clear" onPress={() => setName("")} />
     </View>
   );
 };
@@ -24,7 +59,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   card: {
-    flexDirection: "row",
+    // flexDirection: "row",
     alignItems: "center",
     // backgroundColor:"red" ,
     marginTop: 5,
